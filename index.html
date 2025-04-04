@@ -3,29 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Construction</title>
-    
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+    <title>Coming Soon!</title>
+
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body>
 
-    <div class="container text-center d-flex flex-column justify-content-center align-items-center vh-100">
-        <div class="content-box p-4 rounded shadow-lg">
-            <h1 class="display-4"> Oops! Under Construction</h1>
-            <p class="lead">My developer <b>Sudip</b> is occupied with university projects right now! 🎓</p>
-            <p>He'll be back soon…....</p>
-            <p>Please come back later for something awesome! 🚀</p>
-            <button id="funButton" class="btn btn-warning mt-3">Click for a surprise!</button>
+    <div class="overlay"></div> <!-- overlay for better text contrast -->
+
+    <div class="container">
+        <div class="content-box">
+            <div class="icon-container">
+                <i class="fas fa-tools fa-spin"></i> <!-- Animated Tools Icon -->
+            </div>
+            <h1>Hold Tight! We're Building Something Awesome.</h1>
+            <p class="subtitle">Our developer, <b>Sudip</b>, is currently juggling university projects, but this space will be updated soon!</p>
+            <p class="eta">Please check back later. Good things are coming! 🚀</p>
+            <button id="funButton" class="cta-button">
+                <i class="fas fa-gift"></i> Click for a little sneak peek!
+            </button>
+            <p id="surpriseMessage" class="surprise-message" style="display: none;">
+                Just kidding! 😉 But seriously, Sudip's extremely busy at the moment.  
+            </p>
         </div>
     </div>
 
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
 </body>
