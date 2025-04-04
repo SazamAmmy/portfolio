@@ -1,96 +1,202 @@
-/* General Styling */
-body {
+/* --- Base Styles --- */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px; /* Base font size */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff; /* White text */
+    background-color: #1a1a2e; /* Fallback background */
     background: url('../img/Background_IMG.png') no-repeat center center/cover;
-    color: #f8f9fa; /* Better contrast and readability */
-    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Use min-height for flexibility */
+    position: relative; /* Needed for overlay */
+    overflow: hidden; /* Prevent scrollbars from background effects if any */
+    text-align: center;
+    padding: 20px; /* Add padding for smaller screens */
 }
 
-/* Styling for the content box */
-.content-box {
-    background: rgba(0, 0, 0, 0.85); /* Slightly darker for readability */
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0px 0px 25px rgba(255, 255, 255, 0.3); /* Enhanced box-shadow */
-    animation: fadeIn 1.2s ease-in-out;
-    text-align: center;
-    max-width: 600px;
+/* --- Background Overlay--- */
+/*
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    background: rgba(16, 18, 32, 0.5); /* Dark semi-transparent overlay */
+/*    z-index: 1;
+}
+*/
+
+/* --- Container --- */
+.container {
+    position: relative; /* To position content above overlay */
+    z-index: 2;
+    max-width: 700px; /* Max width for content */
+    width: 100%;
+    animation: fadeInScaleUp 0.8s ease-out forwards; /* Entrance animation */
 }
 
-/* Button styling */
-.btn-warning {
-    background-color: #ffc107;
+/* --- Glassmorphism Content Box --- */
+.content-box {
+    background: rgba(26, 26, 46, 0.6); /* Dark translucent background */
+    backdrop-filter: blur(15px); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(15px); /* Safari support */
+    border-radius: 15px;
+    padding: 40px 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* Soft shadow */
+}
+
+/* --- Icon --- */
+.icon-container {
+    font-size: 3rem; /* Larger icon */
+    color: #e4c465; /* Gold-like color */
+    margin-bottom: 20px;
+}
+
+/* --- Typography --- */
+h1 {
+    font-size: 2.5rem; /* Responsive font size */
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    color: #ffffff; /* Ensure heading is bright white */
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.85); /* Slightly dimmer text */
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.eta {
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 30px;
+}
+
+b { /* Style the bolded name */
+    font-weight: 600;
+    color: #f0e0a0; /* Highlight Sudip's name */
+}
+
+/* --- Call to Action Button --- */
+.cta-button {
+    background-color: #e4c465; /* Gold-like color */
+    color: #1a1a2e; /* Dark text on button */
     border: none;
-    color: black;
-    padding: 12px 25px;
-    font-size: 16px;
     border-radius: 8px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-flex; /* Align icon and text */
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
 }
 
-.btn-warning:hover {
-    transform: scale(1.1);
-    background-color: #e0a800; /* Slightly darker hover color */
+.cta-button:hover {
+    background-color: #d1b35a; /* Slightly darker gold on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 4px 15px rgba(228, 196, 101, 0.3);
 }
 
-/* Popup styling */
-.popup {
-    display: none;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.9);
-    color: #f8f9fa;
-    padding: 20px 30px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
-    z-index: 1000;
-    text-align: center;
-    width: 300px;
+.cta-button:active {
+    transform: translateY(0); /* Press down effect */
 }
 
-.popup.active {
-    display: block; /* Popup appears when active */
+/* --- Surprise Message --- */
+.surprise-message {
+    margin-top: 25px;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    transition: opacity 0.5s ease; /* Smooth appearance */
+    opacity: 0; /* Start hidden (controlled by JS adding a class later) */
+    max-height: 0; /* Start hidden */
+    overflow: hidden; /* Hide content until revealed */
 }
 
-/.popup button {
-    margin-top: 15px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
+.surprise-message.visible {
+    opacity: 1;
+    max-height: 100px; /* Adjust as needed */
 }
 
-.popup button:hover {
-    background-color: #bd2130;
-}
 
-/* Fade-in animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-15px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .content-box {
-        width: 90%;
-        padding: 20px;
+/* --- Animations --- */
+@keyframes fadeInScaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(10px);
     }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
 
-    .popup {
-        width: 80%;
+/* Make Font Awesome icons spin */
+.fa-spin {
+  animation: fa-spin 2s infinite linear;
+}
+@keyframes fa-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    .content-box {
+        padding: 30px 25px;
+    }
+    .subtitle {
+        font-size: 1rem;
+    }
+    .eta {
+        font-size: 0.9rem;
+    }
+    .cta-button {
+        padding: 10px 25px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+     .content-box {
+        padding: 25px 20px;
+        margin: 0 10px; /* Prevent box touching edges */
+    }
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    .icon-container {
+        font-size: 2.5rem;
+    }
+     .cta-button {
+        width: 100%; /* Make button full width */
+        justify-content: center; /* Center icon/text */
     }
 }
